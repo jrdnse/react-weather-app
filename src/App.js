@@ -35,7 +35,7 @@ class App extends Component {
     }
 
     const apiCall = await fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=${cityA},${countryA}&units=metric&appid=${process.env.REACT_APP_WEATHER_API}`
+      `https://api.openweathermap.org/data/2.5/weather?q=${cityA},${countryA}&units=metric&appid=${process.env.REACT_APP_WEATHER_API}`
     );
 
     const response = await apiCall.json();
