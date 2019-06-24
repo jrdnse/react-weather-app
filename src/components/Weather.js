@@ -2,10 +2,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Container } from 'react-bootstrap';
+import WeatherIcons from './WeatherIcons';
+
+const smallInfo = {
+  color: '#282828',
+  fontWeight: 'bold',
+};
 
 const contStyle = {};
 
-const tempStyle = {};
+const tempStyle = {
+  fontSize: '144px',
+  marginBottom: '-20px',
+};
 
 const descStyle = {};
 
@@ -15,8 +24,12 @@ export default class Weather extends React.Component {
   getStyle = () => {
     const { desc } = this.props;
     return {
-      background: desc === 'Clear' ? 'blue' : 'red',
+      background: desc === 'Clear' ? `blue` : 'red',
     };
+  };
+
+  checkIcon = desc => {
+    return desc ? <WeatherIcons icon={desc} /> : '';
   };
 
   render() {
@@ -33,12 +46,14 @@ export default class Weather extends React.Component {
 
     return (
       <Container style={contStyle}>
-        <p>
+        <p style={smallInfo}>
           {formattedDate} <br />
           {city} {country}
         </p>
         <h1 style={tempStyle}>{temperature}</h1>
-        <h2 style={descStyle}>{desc}</h2>
+        <h2 style={descStyle}>
+          {this.checkIcon(desc)} {desc}
+        </h2>
         <p style={otherStyle}>
           {humidity}
           <br /> {sunrise} <br />

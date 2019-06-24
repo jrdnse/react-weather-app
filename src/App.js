@@ -40,6 +40,8 @@ class App extends Component {
 
     const response = await apiCall.json();
 
+    console.log(response);
+
     if (response.cod === '404') {
       return;
     }
