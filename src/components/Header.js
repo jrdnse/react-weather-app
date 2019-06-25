@@ -12,9 +12,6 @@ export default function Header(props) {
         <Col>
           <Search loadAlgolia={loadAlgolia} />
         </Col>
-        <Col md="auto">
-          <h3>C/F switch</h3>
-        </Col>
       </Row>
     </Container>
   );

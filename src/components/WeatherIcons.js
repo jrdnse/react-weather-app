@@ -21,7 +21,7 @@ export default class WeatherIcons extends Component {
     const { icon } = this.props;
     const Icon = this.components[icon];
 
-    return <Icon size={144} color="#000" />;
+    return <Icon size={200} color="#fff" className="weather-icon" />;
   }
 }
 

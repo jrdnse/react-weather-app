@@ -15,3 +15,46 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+.ap-icon-pin {
+  display: none;
+}
+
+.desc-icon {
+  font-size: 120px;
+  margin-top: -20px;
+}
+
+.smallText {
+  margin-top: -20px;
+  font-size: 30px;
+}
+
+@media only screen and (max-width: 760px) {
+  .weather-icon {
+    height: 150px;
+    width: 150px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .weather-icon {
+    height: 130px;
+    width: 130px;
+  }
+
+  .desc-icon {
+    font-size: 100px;
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  .weather-icon {
+    height: 90px;
+    width: 90px;
+  }
+
+  .smallText {
+    margin-top: 20px;
+  }
+}

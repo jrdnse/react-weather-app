@@ -21,7 +21,6 @@ class App extends Component {
     this.setState({
       cityA: e.suggestion.name,
       countryA: e.suggestion.country,
-      // fix this to make it check if the field is empty cleared instead
     });
     this.getWeather();
   };
@@ -40,7 +39,7 @@ class App extends Component {
 
     const response = await apiCall.json();
 
-    console.log(response);
+    // console.log(response);
 
     if (response.cod === '404') {
       return;
@@ -57,10 +56,10 @@ class App extends Component {
 
       this.setState({
         desc: response.weather[0].main,
-        temperature: `${Math.trunc(response.main.temp)}C`,
-        humidity: `${response.main.humidity}%`,
-        sunrise: formattedSunrise,
-        sunset: formattedSunset,
+        temperature: `${Math.trunc(response.main.temp)}\u2103`,
+        humidity: `Humidity: ${response.main.humidity}%`,
+        sunrise: `Sunrise: ${formattedSunrise}`,
+        sunset: `Sunset: ${formattedSunset}`,
         city: `${response.name},`,
         country: response.sys.country,
         formattedDate,
