@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Container } from 'react-bootstrap';
 import WeatherIcons from './WeatherIcons';
+import NotFound from './NotFound';
 
 const smallInfo = {
   fontWeight: 'bold',
@@ -22,7 +23,7 @@ export default class Weather extends React.Component {
     return desc ? <WeatherIcons icon={desc} /> : '';
   };
 
-  render() {
+  cityExists = bool => {
     const {
       city,
       country,
@@ -33,8 +34,9 @@ export default class Weather extends React.Component {
       sunset,
       formattedDate,
     } = this.props;
-
-    return (
+    return bool ? (
+      <NotFound />
+    ) : (
       <Container style={contStyle}>
         <p style={smallInfo}>
           {formattedDate} <br />
@@ -54,6 +56,11 @@ export default class Weather extends React.Component {
         </p>
       </Container>
     );
+  };
+
+  render() {
+    const { is404 } = this.props;
+    return this.cityExists(is404);
   }
 }
 
@@ -66,4 +73,5 @@ Weather.propTypes = {
   sunrise: PropTypes.string,
   sunset: PropTypes.string,
   formattedDate: PropTypes.string,
+  is404: PropTypes.bool,
 };

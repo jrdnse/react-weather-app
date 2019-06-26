@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import { Container } from 'react-bootstrap';
 import Header from './components/Header';
 import Weather from './components/Weather';
 
@@ -15,6 +16,7 @@ class App extends Component {
     cityA: undefined,
     countryA: undefined,
     formattedDate: undefined,
+    is404: false,
   };
 
   getAlgolia = e => {
@@ -41,8 +43,14 @@ class App extends Component {
 
     // console.log(response);
 
-    if (response.cod === '404') {
-      return;
+    if (response.cod !== '404') {
+      this.setState({
+        is404: false,
+      });
+    } else {
+      return this.setState({
+        is404: true,
+      });
     }
 
     if (cityA && countryA) {
@@ -77,11 +85,14 @@ class App extends Component {
       city,
       country,
       formattedDate,
+      is404,
     } = this.state;
+
     return (
-      <React.Fragment>
+      <Container>
         <Header loadAlgolia={this.getAlgolia} />
         <Weather
+          is404={is404}
           desc={desc}
           temperature={temperature}
           humidity={humidity}
@@ -91,7 +102,7 @@ class App extends Component {
           country={country}
           formattedDate={formattedDate}
         />
-      </React.Fragment>
+      </Container>
     );
   }
 }

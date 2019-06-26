@@ -6,6 +6,7 @@ import {
   WiRain,
   WiCloud,
   WiSnow,
+  WiFog,
 } from 'weather-icons-react';
 
 export default class WeatherIcons extends Component {
@@ -15,6 +16,7 @@ export default class WeatherIcons extends Component {
     Rain: WiRain,
     Clouds: WiCloud,
     Snow: WiSnow,
+    Mist: WiFog,
   };
 
   render() {
