@@ -23,6 +23,8 @@ export default class AlgoliaSearch extends Component {
     return (
       <div>
         <input
+          // eslint-disable-next-line no-return-assign
+          onFocus={() => (this.algoliaSearch.value = '')}
           style={style}
           type="text"
           ref={as => {
