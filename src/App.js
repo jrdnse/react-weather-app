@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Container } from 'react-bootstrap';
+import { Offline, Online } from 'react-detect-offline';
 import Header from './components/Header';
 import Weather from './components/Weather';
 
@@ -40,8 +41,6 @@ class App extends Component {
     );
 
     const response = await apiCall.json();
-
-    // console.log(response);
 
     if (response.cod !== '404') {
       this.setState({
@@ -89,20 +88,35 @@ class App extends Component {
     } = this.state;
 
     return (
-      <Container>
-        <Header loadAlgolia={this.getAlgolia} />
-        <Weather
-          is404={is404}
-          desc={desc}
-          temperature={temperature}
-          humidity={humidity}
-          sunrise={sunrise}
-          sunset={sunset}
-          city={city}
-          country={country}
-          formattedDate={formattedDate}
-        />
-      </Container>
+      <React.Fragment>
+        <Online>
+          <Container>
+            <Header loadAlgolia={this.getAlgolia} />
+            <Weather
+              is404={is404}
+              desc={desc}
+              temperature={temperature}
+              humidity={humidity}
+              sunrise={sunrise}
+              sunset={sunset}
+              city={city}
+              country={country}
+              formattedDate={formattedDate}
+            />
+          </Container>
+        </Online>
+        <Offline>
+          <h1
+            style={{
+              fontSize: '72px',
+              color: 'white',
+              textAlign: 'center',
+            }}
+          >
+            The app requires Internet access to work.
+          </h1>
+        </Offline>
+      </React.Fragment>
     );
   }
 }
